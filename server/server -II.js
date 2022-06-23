@@ -1,4 +1,4 @@
-// Constants andvariables
+// Constants and variables
 const express = require('express');
 const { graphqlHTTP } = require('express-graphql');
 const { buildSchema } = require('graphql');
@@ -12,24 +12,28 @@ server.use(cors());
 // Construct a schema, using GraphQL schema language
 const schema = buildSchema(`
   type Query {
-    hello: String
+    name: String
   }
+  
 `);
 
 // The root provides a resolver function for each API endpoint
 const root = {
-  hello: () => {
-    return 'Hello world!';
+  name: () => {
+    return 'No name';
   },
 };
 
-// Starting server
+
+
+//Middleware
 server.use('/graphql', graphqlHTTP({
   schema: schema,
   rootValue: root,
   graphiql: true,
 }));
 
+// Starting server
 server.listen(
     port,
     err => console.log(err || `GraphQL API server at http://localhost:${port}/graphql`));
