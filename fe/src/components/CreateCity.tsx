@@ -22,8 +22,6 @@ const CREATE_CITY_MUTATION = gql`
     }
 `;
 
-console.log('CREATE_CITY_MUTATION: ', CREATE_CITY_MUTATION);
-
 //Custum Hooks
 const [createCity] = useMutation(CREATE_CITY_MUTATION, {
   variables: {
@@ -34,11 +32,13 @@ const [createCity] = useMutation(CREATE_CITY_MUTATION, {
 
   return (
     <div className="container">
-      <h3 className="d-flex pl-10 pt-2 ">Add City</h3  >
+      <h3 className="d-flex pl-10 pt-5 ">Add City</h3  >
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          createCity();
+          createCity()
+          // Refresh screen after deletion
+          .then(()=>window.location.reload());
         }}
       >
         <div className="d-flex pl-10">

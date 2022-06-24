@@ -1,7 +1,5 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
 import { CreateCity } from './CreateCity';
-import { DisplayUpdateDeleteCity } from './DisplayUpdateDeleteCity';
+import { DisplayDeleteCity } from './DisplayDeleteCity';
 
 
 
@@ -10,9 +8,9 @@ function App() {
 
   
   return (
-    <div className="bg-light">
+    <div style={{height: "500px"}} className="mw-100  bg-success bg-opacity-10">
       <CreateCity />
-      <DisplayUpdateDeleteCity />
+      <DisplayDeleteCity />
     </div>
   );
 }

@@ -1,5 +1,8 @@
 const { ApolloServer } = require('apollo-server');
 
+//Constants and variables
+const port = 5000;
+
 // Schema
 const typeDefs = `
   type Query {
@@ -9,11 +12,11 @@ const typeDefs = `
 
   type Mutation {
     post(city: String!, country: String!): City!
-    deleteCity(id: ID!): Boolean
+    deleteCity(id: String!): Boolean
   }
 
   type City {
-    id: ID!
+    id: String!
     city: String!
     country: String!
   }
@@ -33,6 +36,7 @@ let cities = [{
 // Resolvers  
 const resolvers = {
   Query: {
+    // Display
     info: () => `This is a GraphQL API`,
     feed: () => cities,
   },
@@ -51,10 +55,12 @@ const resolvers = {
       console.log('cities', cities)
       return city
     },
+    // Delete
     deleteCity: (parent, args) => {
       const filteredCities = cities.filter(city => city.id!=args.id)
       cities = [...filteredCities]
       console.log('citiess', cities);
+      return true;
     }
   },
 }
@@ -67,6 +73,6 @@ const server = new ApolloServer({
 
 // Starting server
 server
-  .listen()
+  .listen(port)
   .then(({ url }) => console.log(`GraphQL Server is running on ${url}`)
   );

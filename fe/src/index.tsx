@@ -13,7 +13,7 @@ import {
 } from '@apollo/client';
 
 // Constants and variables
-const httpLink = createHttpLink({uri: 'http://localhost:4000'});
+const httpLink = createHttpLink({uri: 'http://localhost:5000'});
 
 const client = new ApolloClient({
   link: httpLink,
